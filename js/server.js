@@ -128,14 +128,6 @@ function iniciar() {
 
       }
     });
-    fs.readFile('./dir/clientes.txt', 'utf8', function(err, data) {
-        if( err ){
-            console.log(err)
-        }
-        else{
-            clientes = data;
-      }
-    });
 }
 /*----------------------------------------------------------------------------------------------------------------
 funcion encargada de mandar el broacast y escuchar por UDP recibe el mensaje que recibe
@@ -268,11 +260,21 @@ function enviarmulti(json) {
 esta funcion detecta el nombre ingresado en login y lanza a TCP UDP Y MULTICAST con la funcion iniciar()
 ----------------------------------------------------------------------------------------------------------------*/
 function lanzar(){
-    nombre = document.getElementById("nombre").value;
-    if (nombre)
-    {
-        document.getElementsByTagName("HEAD")[0].innerHTML+='<link rel="stylesheet" href="../css/servidor.css">';
-        iniciar();
+    fs.readFile('./dir/clientes.txt', 'utf8', function(err, data) {
+        if( err ){
+            console.log(err)
+        }
+        else{
+            clientes = data;
+      }
+    });
+    if (clientes) {
+      nombre = document.getElementById("nombre").value;
+      if (nombre)
+      {
+          document.getElementsByTagName("HEAD")[0].innerHTML+='<link rel="stylesheet" href="../css/servidor.css">';
+          iniciar();
+      }  
     }
 }
 
