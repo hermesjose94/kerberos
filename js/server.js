@@ -99,6 +99,11 @@ var hilo;
 var id=1;
 var nombre;
 var clientes = "";
+var cascii="";
+var Cifrado="";
+var descifrado="";
+var clave =20;
+var ver  = "mensaje de verificacion de clientes se convierte en ascii y se realiza XOR con la clave del cliente si lo leesestas verificado....";
 
 
 /*----------------------------------------------------------------------------------------------------------------
@@ -228,6 +233,7 @@ function Multicast(ip_multi,port_multi){
     switch (recibido.codigo) {
         case 11:
 							agregar(recibido.mensaje);
+              buscarclave(recibido.mensaje);
         break;
     }
   });
@@ -307,5 +313,61 @@ function volver()
 
 function agregar(mensaje) {
   var div = document.getElementById("consola");
-  div.innerHTML='<p>'+mensaje+'</p><br>';
+  div.innerHTML='<p>>: '+mensaje+'</p><br>';
+}
+
+function buscarclave(nombre) {
+  if (clientes) {
+    console.log(clientes);
+    var vector = clientes.split(";");
+    for (var i = 0; i < vector.length; i++) {
+      var cli = vector[i].split("=");
+      if (nombre == cli[0] ) {
+        clave=cli[1];
+      }
+    }
+    console.log(clave);
+    agregar("Clave del cliente"+clave);
+}
+function generarAscii(mensaje) {
+  for (var i = 0; i < mensaje.length; i++) {
+    var ascii =   mensaje[i].charCodeAt(0);
+    var  binario = ascii.toString(2);
+    if (i < mensaje.length-1) {
+      cascii+=ascii+"$";
+    }
+    else {
+      cascii+=ascii;
+    }
+
+  }
+  return cascii;
+}
+function cifrar(cascii) {
+  vector = cascii.split("$");
+  var cbinario="";
+  for (var i = 0; i < vector.length; i++) {
+    var cifrar = vector[i] ^ clave;
+    var descifrar = cifrar ^ clave;
+    var  binario = cifrar.toString(2);
+    if (i < vector.length-1) {
+      cbinario+=binario+"#";
+    }
+    else {
+      cbinario+=binario;
+    }
+  }
+  return cbinario;
+}
+
+function descifrar(cbinario) {
+    vector = cbinario.split("#");
+    var mensaje="";
+    for (var i = 0; i < vector.length; i++) {
+      var numero = parseInt(vector[i], 2);
+      var ascii = numero ^ clave;
+      var letra = String.fromCharCode(ascii);
+      mensaje += letra;
+    }
+    return mensaje;
 }

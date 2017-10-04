@@ -336,9 +336,6 @@ function empezar(){
 		var cajas =  document.getElementById("hclient");
 		cajas.style.display="none";
     clearInterval(actualizar);
-
-    console.log("-------------Miembros--------------------");
-    console.log(nombres);
 }
 /*----------------------------------------------------------------------------------------------------------------
 funcion encargada de devolver todo al index o menu principal donde se escoje si ser servidor o cliente
