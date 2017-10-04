@@ -124,7 +124,7 @@ function iniciar() {
             json.nombre=nombre;
             UDP(json,ip_broadcast,port_udp);
             TCP(mensaje(3),ip,port_tcp);
-            //Multicast(ip_multi,port_multi);
+            Multicast(ip_multi,port_multi);
 
       }
     });
@@ -252,7 +252,7 @@ funcion encargada de escuchar por Multicast recibe la ip de multicast y el puert
 function enviarmulti(json) {
 
       var message = new Buffer(JSON.stringify(json));
-      clientMUL.send(message, 0, message.length, port_multi,ip_multi);
+      clientMUL.send(message, 0, message.length, port_multi,ip_broadcast);
       console.log("Enviando Multicast...");
       console.log(json);
 }
