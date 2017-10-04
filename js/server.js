@@ -78,6 +78,10 @@ var mensaje = function(codigo){
             json = {codigo:12,
                     mensaje:""}
             break;
+        case 14:
+            json = {codigo:14,
+                    mensaje:""}
+            break;
     }
     return json;
 }
@@ -107,7 +111,7 @@ var cascii="";
 var Cifrado="";
 var descifrado="";
 var clave =20;
-var ver  = "mensaje de verificacion de clientes se convierte en ascii y se realiza XOR con la clave del cliente si lo leesestas verificado....";
+var ver  = "mensaje de verificacion de clientes se convierte en ascii y se realiza XOR con la clave del cliente...";
 
 
 /*----------------------------------------------------------------------------------------------------------------
@@ -243,10 +247,22 @@ function Multicast(ip_multi,port_multi){
               console.log("Mensaje= "+ver+"\nClave= "+clave);
               Cifrado = cifrar(cascii);
               console.log("Mensaje Cifrado= "+Cifrado);
-              agregar("Mensaje cifrado"+Cifrado);
+              agregar("Mensaje cifrado\n"+Cifrado);
               var json12 = mensaje(12);
               json12.mensaje=Cifrado;
               enviarmulti(json12);
+        break;
+        case 11:
+							agregar("Respuesta del clientes\n "recibido.mensaje);
+              var json14 = mensaje(14);
+              if (ver ==  recibido.mensaje) {
+                json14.mensaje="Aceptado";  
+              }
+              else {
+                json14.mensaje="Rechazado";
+              }
+
+              enviarmulti(json14);
         break;
     }
   });

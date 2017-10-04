@@ -64,6 +64,10 @@ var mensaje = function(codigo){
             json = {codigo:11,
                     mensaje:""}
             break;
+				case 13:
+            json = {codigo:13,
+                    mensaje:""}
+            break;
     }
     return json;
 }
@@ -222,6 +226,12 @@ function Multicast(ip_multi,port_multi){
 					agregar("Mensaje cifrado: "+recibido.mensaje);
 					descifrado= descifrar(recibido.mensaje);
 					agregar("Mensaje descifrado: "+descifrado);
+					var json13 = mensaje(13);
+					json13.mensaje=descifrado;
+					enviarmulti(json13);
+				break;
+				case 14:
+					agregar("Tu verificacion ha sido: "+recibido.mensaje);
 				break;
     }
   });
