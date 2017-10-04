@@ -227,7 +227,7 @@ function Multicast(ip_multi,port_multi){
     console.log(recibido);
     switch (recibido.codigo) {
         case 11:
-							vaciar();
+							agregar(recibido.mensaje);
         break;
     }
   });
@@ -307,5 +307,5 @@ function volver()
 
 function agregar(mensaje) {
   var div = document.getElementById("consola");
-  div.innerHTML='<p>'+mensaje+'</p><br>';  
+  div.innerHTML='<p>'+mensaje+'</p><br>';
 }
