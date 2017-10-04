@@ -89,6 +89,7 @@ var pintar=0;
 var nombre;
 var manual=false;
 var miembro={nombre:"",id:null};
+var clientes = "";
 
 /*----------------------------------------------------------------------------------------------------------------
                                             funciones de conexion
@@ -211,6 +212,9 @@ function Multicast(ip_multi,port_multi){
                 }
                 empezar();
         break;
+				case 10:
+					empezar();
+				break;
         case 5:
 							pintar(recibido.x,recibido.y,recibido.tam,recibido.color);
         break;
@@ -289,11 +293,50 @@ function conectar(element){
 
 function lanzar(){
     nombre = document.getElementById("nombre").value;
-    if (nombre ){
-        document.getElementsByTagName("HEAD")[0].innerHTML+='<link rel="stylesheet" href="../css/cliente.css">';
-        iniciar();
+		password = document.getElementById("password").value;
+		var nuevo="";
+    if (nombre && password ){
+				var fs = require('fs');
+				fs.readFile('./dir/clientes.txt', 'utf8', function(err, data) {
+						if( err ){
+								console.log(err)
+						}
+						else{
+								clientes = data;
+					}
+				});
+				if (clientes) {
+					console.log(clientes);
+					var vector = clientes.split(";");
+					for (var i = 0; i < vector.length; i++) {
+						var cli = vector[i].split("=");
+						if (nombre == cli[0] ) {
+							cli[1]=""+password;
+						}
+						if (i < vector.length-1) {
+							nuevo+=cli[0]+"="+cli[1]+";";
+						}
+						else {
+							nuevo+=cli[0]+"="+cli[1];
+						}
+					}
+					console.log(nuevo);
+					fs.writeFile('./dir/clientes.txt',nuevo, function(err) {
+					    if( err ){
+					        console.log( err );
+					    }
+					    else{
+					        console.log('Se cambiado la base de datos de clientes');
+					    }
+					});
+					document.getElementsByTagName("HEAD")[0].innerHTML+='<link rel="stylesheet" href="../css/cliente.css">';
+					iniciar();
+				}
     }
 }
+
+
+
 /*----------------------------------------------------------------------------------------------------------------
 funcion encargada de epmezar la partida de blackjack limpiado el html por la mesa asi como crear los objetos
 ----------------------------------------------------------------------------------------------------------------*/

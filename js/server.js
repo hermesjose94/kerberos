@@ -70,6 +70,10 @@ var mensaje = function(codigo){
         case 7:
             json = {codigo:7}
             break;
+        case 10:
+            json = {codigo:10,
+                    mensaje:""}
+            break;
     }
     return json;
 }
@@ -94,6 +98,7 @@ var serverMUL;
 var hilo;
 var id=1;
 var nombre;
+var clientes = "";
 
 
 /*----------------------------------------------------------------------------------------------------------------
@@ -117,9 +122,17 @@ function iniciar() {
             port_multi= res[4];
             console.log("Datos de conexion: "+"IB: "+ip_broadcast+" IM: "+ip_multi+" PU: "+port_udp+" PT: "+port_tcp+" PM: "+port_multi);
             json.nombre=nombre;
-          //  UDP(json,ip_broadcast,port_udp);
-          //  TCP(mensaje(3),ip,port_tcp);
-          //  Multicast(ip_multi,port_multi);
+            UDP(json,ip_broadcast,port_udp);
+            TCP(mensaje(3),ip,port_tcp);
+            //Multicast(ip_multi,port_multi);
+      }
+    });
+    fs.readFile('./dir/clientes.txt', 'utf8', function(err, data) {
+        if( err ){
+            console.log(err)
+        }
+        else{
+            clientes = data;
       }
     });
 }
@@ -140,12 +153,12 @@ function UDP(json,ip_broadcast,port){
             json.tiempo=""+json.tiempo;
             json.espacios=""+(1-clients.length);
             message = new Buffer(JSON.stringify(json));
-            console.log(json.nombre+" "+json.tiempo);
+            console.log(json.nombre+" "+json.tiempo+" "+json.espacios);
             serverUDP.send(message, 0, message.length, port, ip_broadcast, function(err, bytes) {
             if(err){console.log(err);}});
         json.tiempo=json.tiempo-1;
-        if(json.espacios<=0){
-            enviar_empezar();
+        if(json.espacios==0){
+          enviar_empezar();
         }
         if(json.tiempo==0){
             json.tiempo=120;
@@ -267,14 +280,9 @@ funcion encargada de mandar el mensaje prentacion del juego por multicast y agre
 jugadores y llama a empezar()
 ----------------------------------------------------------------------------------------------------------------*/
 function enviar_empezar(){
-    var json4 = mensaje(4);
+    var json4 = mensaje(10);
     var j2={nombre:"",id:null};
-    j2.nombre=nombre;
-    j2.id=0;
-    Cnom.push(j2);
-    for (var i = 0; i <Cnom.length; i++) {
-      json4.miembros.push(Cnom[i]);
-    }
+    json4.mensaje="hola";
     enviarmulti(json4);
     empezar();
 }
