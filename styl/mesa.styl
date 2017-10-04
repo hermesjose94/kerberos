@@ -1,0 +1,140 @@
+/*
+display: flex; /* or inline-flex
+flex-direction: row | row-reverse | column | column-reverse;
+justify-content: flex-start | flex-end | center | space-between | space-around;
+align-items: flex-start | flex-end | center | baseline | stretch;
+*/
+alinear(a,b,c)
+	display flex
+	flex-direction a
+	justify-content b
+	align-items c
+
+#cuerpo
+	margin 0
+	overflow-x hidden
+	background-image url("../img/bg.png")
+	background-size 100% 100%
+	width 100%
+	height 598px
+	color white
+	alinear(column,space-around,center)
+
+#hmesa
+	alinear(column,center,center)
+	width 100%
+	header
+		width 300px
+		height 210px
+		background brown
+		border: 7px double rgba(253, 196, 21, 0.91)
+
+		alinear(column,center,center)
+		.cartas
+			margin-top 8px
+			img
+				animation-name mover
+				animation-duration 2s
+				position relative
+				&:nth-child(n+2)
+					margin-left -40px
+		.mazo
+			alinear(row,center,center)
+			position relative
+			img
+				background-image url("../img/mazo.png")
+				margin-left -24px
+				margin-right -40px
+		p
+			color #fff
+			margin 0
+
+	section
+		width 100%
+		alinear(row,space-around,flex-start)
+		margin-top 2%
+		height 400px
+
+		article
+			width 150px
+			height 300px
+			alinear(column,space-between,center)
+			h3
+				color #fff
+			&:nth-child(2),&:nth-child(3)
+				align-self flex-end
+			.cartas
+				width 100px
+				height 100px
+				border: 2px solid white
+				border-radius 50%
+				alinear(row,center,center)
+				img:nth-child(n+2)
+					margin-left -40px
+			#j1
+				img
+					position relative
+					animation-name mover1
+					animation-duration 3s
+			#j2
+				img
+					position relative
+					animation-name mover2
+					animation-duration 3s
+			#j3
+				img
+					position relative
+					animation-name mover3
+					animation-duration 3s
+
+			#j4
+				img
+					position relative
+					animation-name mover4
+					animation-duration 3s
+
+			.botones
+				width 100%
+				alinear(row,space-between,center)
+				button
+					height 40px
+					width 48%
+					font-size 15px
+					background #337ab7
+					border 2px solid #2e6da4
+					border-radius 5px
+					color white
+					&:hover
+						background rgba(51,122,183,0.6)
+						border 2px solid #5B94C5
+					&:disabled
+						background #B6C5D2
+						border 2px solid #B6C5D2
+			.puntos
+				width 100%
+				alinear(column,center,flex-start)
+				p
+					margin 0
+					color: beige;
+					width: 100%;
+					text-align: center;
+					font-size: 1.3em;
+@keyframes mover
+	0%   { left:-2px; top:-100px; transform: rotate(30deg);}
+	100%  { left:0px; top:0px; transform: rotate(0deg);}
+
+@keyframes mover1
+	0%   { left:500px; top:-300px; transform: rotate(30deg);}
+	100%  { left:0px; top:0px; transform: rotate(0deg);}
+
+@keyframes mover2
+	0%   { left:200px; top:-400px; transform: rotate(30deg);}
+	100%  { left:0px; top:0px; transform: rotate(0deg);}
+
+@keyframes mover3
+	0%   { left:-200px; top:-400px; transform: rotate(30deg);}
+	100%  { left:0px; top:0px; transform: rotate(0deg);}
+
+@keyframes mover4
+	0%   { left:-500px; top:-300px; transform: rotate(30deg);}
+	100%  { left:0px; top:0px; transform: rotate(0deg);}

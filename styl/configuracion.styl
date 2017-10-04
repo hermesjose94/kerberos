@@ -1,0 +1,93 @@
+alinear(a,b,c)
+  display flex
+  flex-direction a
+  justify-content b
+  align-items c
+
+header
+  width 100%
+  height 70px
+  margin 0
+  color black
+  margin 0
+  padding 0
+  alinear(column,center,center)
+
+body
+  border 0
+  margin 0
+  width 420px
+  height 598px
+  alinear(column,flex-start,center)
+  font-family Palatino Linotype
+  overflow hidden
+  background-image url("../img/bg.png")
+  background-size 100% 100%
+//form
+  //alinear(column,flex-start,center)
+
+ul
+  width 360px
+  list-style-type: none
+  margin 0
+  padding 0
+li
+  padding 12px
+  border-bottom 1px solid #eee
+  alinear(row,space-between,center)
+
+label
+  color black
+  font-family sans-serif
+  font-size 16px
+  font-weight bold
+  margin-top 3px
+  padding 3px
+  width 90px
+
+input
+  height 20px
+  width 180px
+  padding 5px 8px
+
+textarea
+  padding 8px
+  width 300px
+
+input,textarea
+  display: block;
+  width: 200px;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+
+input:focus, textarea:focus
+  border 1px solid #555
+  box-shadow 0 0 3px #aaa
+  padding-right 45px
+
+
+.button
+  border-radius 10px
+  background-color #337ab7
+  border-color #2e6da4
+  font-size 1.5em
+  height 50px
+  width 190px
+  margin-top 5px
+  color white
+  margin-top 20px
+  &:hover
+    background-color: #286090;
+    border-color: #204d74;

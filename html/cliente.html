@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Cliente</title>
+	<script src="../js/client.js"></script>
+	<link rel="stylesheet" href="../css/login.css">
+	<link rel="stylesheet" href="../css/fontello.css">
+	<script type="text/javascript">
+	/*----------------------------------------------------------------------------------------------------------------
+																		Funciones del paint
+	----------------------------------------------------------------------------------------------------------------*/
+	/*----------------------------------------------------------------------------------------------------------------
+
+	----------------------------------------------------------------------------------------------------------------*/
+
+	var color = "#000000";
+	var tamano = 5;
+	var pintura = false;
+	var borrar = false;
+
+
+	function pintar(posx,posy,ta,c){
+		console.log("x: "+posx+" y: "+posy+" tam: "+ta+" color: "+c);
+		var canvas = document.getElementById("canvas").getContext("2d");
+		canvas.fillStyle = c;
+		canvas.beginPath();
+		canvas.arc(posx,posy,ta,0,Math.PI*2,true);
+		canvas.fill();
+	}
+
+	function borrando(posx,posy,ta){
+		console.log("x: "+posx+" y: "+posy+" tam: "+ta);
+		var canvas = document.getElementById("canvas").getContext("2d");
+		canvas.clearRect(posx, posy, ta*2, ta*2);
+	}
+
+
+	function puntero(event){
+		document.getElementById("canvas").style.cursor = 'crosshair';
+		if(pintura){
+				var x = event.clientX;
+				var y = event.clientY;
+				if (!borrar) {
+					var json5 = mensaje(5);
+	        json5.x=x;
+	        json5.y=y;
+	        json5.tam=tamano;
+	        json5.color=color;
+	        enviarmulti(json5);
+					pintar(x,y,tamano,color);
+				}
+				else {
+					var json6 = mensaje(6);
+	        json6.x=x;
+	        json6.y=y;
+	        json6.tam=tamano;
+	        json6.color=color;
+	        enviarmulti(json6);
+					borrar(x,y,tamano);
+				}
+
+		}
+	}
+	function activar(){
+		pintura = true;
+	}
+	function desactivar(){
+		pintura = false;
+	}
+
+	function borrador(){
+		borrar=true;
+	}
+
+	function lapiz(){
+		borrar=false;
+	}
+	function scolor(){
+		color = document.getElementById("colores").value;
+	}
+
+	function edit_tam(){
+		t = document.getElementById("tam").value;
+		tamano = t;
+	}
+
+	function limpiar_todo() {
+		var json7 = mensaje(7);
+		enviarmulti(json7);
+		vaciar();
+	}
+
+	function vaciar(){
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+	}
+	function limpiar_todo() {
+		var json7 = mensaje(7);
+		enviarmulti(json7);
+		vaciar();
+	}
+
+	</script>
+</head>
+<body id="cuerpo">
+	<div id="login">
+		<header><h1>Login</h1></header>
+		<ul>
+			<li>
+				<label>Nombre</label>
+				<input id="nombre" type="text" required value="Cliente" />
+			</li>
+		</ul>
+		<div id="Cbutton">
+			<button class="button" onclick="lanzar()">Buscar Servidor</button>
+		</div>
+	</div>
+	<div id="hclient">
+	   <header><h1>Cliente</h1></header>
+	   <p id="titulo">Esperando Servidores...</p>
+	   <section id="area_server">
+
+	   </section>
+	</div>
+	<div id="lienzo">
+		<div class="paint">
+				<canvas width="450" height="550" id="canvas" onmousemove="puntero(event);" onmousedown="activar();" onmouseup="desactivar();"></canvas>
+				<div class="herramientas">
+					<a href="#" onclick="lapiz();"><i class="icon-pencil"></i></a>
+					<a href="#" onclick="borrador();"><i class="icon-eraser"></i></a>
+					<a href="#" onclick="limpiar_todo();"><i class="icon-trash"></i></a>
+					<input id="tam" type="number" name="" value="5" onchange="edit_tam();" max="50" min="1">
+					<input name="Icolor" type="color" id="colores" onchange="scolor();"/>
+				</div>
+		</div>
+	</div>
+</body>
+</html>

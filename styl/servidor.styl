@@ -1,0 +1,122 @@
+alinear(a,b,c)
+  display flex
+  flex-direction a
+  justify-content b
+  align-items c
+
+
+ocultar()
+  display none
+
+body
+  alinear(column,flex-start,center)
+  background-image url("../img/bg.png")
+  background-size 100% 100%
+  border 0
+  font-family Palatino Linotype
+  margin 0
+  overflow hidden
+  width 430px
+  height 598px
+
+#lienzo
+  ocultar()
+
+#login
+  ocultar()
+
+#hserver
+  alinear(column,flex-start,center)
+  width 420px
+  header
+    alinear(column,center,center)
+    color black
+    height 70px
+    margin 0
+    margin 0
+    padding 0
+    width 100%
+
+    h1
+      margin 0
+
+  section
+    alinear(column,space-around,center)
+    height 350px
+    width 90%
+
+    article
+      alinear(row,space-around,center)
+      height 20%
+      width 100%
+
+      div
+        &:first-child
+          alinear(column,center,center)
+          background-size 100%
+          border 3px solid beige
+          border-radius 50%
+          color white
+          font-size 1.5em
+          height 60px
+          width 60px
+
+        &:last-child
+          alinear(column,center,center)
+          background beige
+          border-radius 30px
+          display flex
+          font-size 1.5em
+          height 80%
+          width 70%
+
+  button
+    border-radius 10px
+    background-color #337ab7
+    border-color #2e6da4
+    font-size 1.5em
+    height 50px
+    width 190px
+    margin-top 20px
+    color white
+    &:hover
+      background-color: #286090;
+      border-color: #204d74;
+
+.panel
+  width 390px
+  padding 10px
+  .list-group
+    padding-left: 0px;
+    margin-bottom: 20px;
+  .list-group-item:first-child
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color #337ab7
+    border-width: 1px;
+    border-color #2e6da4
+    color white
+  .list-group-item
+    position: relative;
+    display: block;
+    margin-bottom: -1px;
+    padding: 10px 15px;
+    border-width: 1px;
+    border-style: solid;
+    border-color #2e6da4
+    border-image: initial;
+    border-top: none
+    .badge
+      display: inline-block;
+      min-width: 10px;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 1;
+      color: rgb(255, 255, 255);
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: baseline;
+      background-color: #204d74;
+      padding: 3px 7px;
+      border-radius: 10px;
+      float right

@@ -1,0 +1,21 @@
+{
+  "name":"kerberos",
+  "main":"index.html",
+  "single-instance":"flase",
+  "description": "prototipo de Kerberos",
+  "version": "1.0",
+  "keywords": [ "demo", "node-webkit" ],
+  "window":{
+    "title": "Paint NET",
+    "icon": "ico.png",
+    "width":420,
+    "height":560,
+    "max_width":420,
+    "max_height":560,
+    "min_width":420,
+    "min_height":560
+  },
+  "webkit": {
+    "plugin": true
+  }
+}

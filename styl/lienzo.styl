@@ -1,0 +1,43 @@
+#lienzo
+  display block
+
+.paint
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
+  canvas
+    background rgba(255, 255, 255, 0.43);
+    border : solid 1px;
+    cursor: crosshair;
+  .herramientas
+    width: 451px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.68);
+    padding: 10px;
+    box-sizing: border-box;
+    a
+      padding: 5px;
+      background: black;
+      border-radius: 5px;
+      color: white;
+      margin: 0 5px;
+      &:hover
+        background #555
+    input
+      height 18px
+      width: 32px;
+      margin: 0 5px;
+    input:focus, textarea:focus
+      border 1px solid #555
+      box-shadow 0 0 3px #aaa
+      padding-right 12px
+
+    input[type="color"]
+      -webkit-appearance: none;
+      border: none;
+      width: 40px;
+      height: 28px;
+      padding 2px

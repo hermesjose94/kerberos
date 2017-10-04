@@ -1,0 +1,97 @@
+alinear(a,b,c)
+  display flex
+  flex-direction a
+  justify-content b
+  align-items c
+
+ocultar()
+  display none
+
+body
+  alinear(column,flex-start,center)
+  background-image url("../img/bg.png")
+  background-size 100% 100%
+  border 0
+  font-family Palatino Linotype
+  margin 0
+  overflow hidden
+  width 420px
+  height 598px
+
+#hmesa
+  ocultar()
+
+#login
+  ocultar()
+
+#hclient
+  alinear(column,flex-start,center)
+  width 420px
+  p
+    margin 0
+    margin 10px 0
+    color black
+    font-size 1.2em
+
+  header
+    width 100%
+    height 70px
+    margin 0
+    margin 0
+    padding 0
+    alinear(column,center,center)
+    color black
+
+
+  section
+    alinear(row,space-around,center)
+    flex-wrap wrap
+    width 100%
+    height 300px
+    overflow auto
+    color black
+
+    button
+      alinear(column,space-between,center)
+      position relative
+      height 40%
+      width 20%
+      margin 5px
+      background transparent
+      border 1px solid
+      padding 10px
+      border-radius 10px
+      cursor pointer
+      &:hover
+        background rgba(170, 170, 170, 0.55);
+
+      img
+        width 30px
+        height 30px
+      div
+        alinear(row,space-between,center)
+        width 30px
+        height 30px
+        background-size 100%
+        //text-align center
+        width 100%
+        p
+          color black
+          width 100%
+      h3
+        margin 0
+        padding 0
+        width 100%
+        text-align center
+
+  .button
+    width 40%
+    height 50px
+    border-radius 30px
+    color aliceblue
+    font-size 1.2em
+    margin-top 20px
+    color #fff
+    background-color #5cb85c
+    &:hover
+      background #9B9F9B

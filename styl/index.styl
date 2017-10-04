@@ -1,0 +1,80 @@
+/*
+display: flex; /* or inline-flex
+flex-direction: row | row-reverse | column | column-reverse;
+justify-content: flex-start | flex-end | center | space-between | space-around;
+align-items: flex-start | flex-end | center | baseline | stretch;
+*/
+
+alinear(a,b,c)
+	display flex
+	flex-direction a
+	justify-content b
+	align-items c
+
+body
+	margin 0
+	overflow-x hidden
+	background-image url("../img/bg.png")
+	background-size 100% 100%
+	width 100%
+	height 598px
+	color white
+	alinear(column,space-around,center)
+header
+	margin-top 20px
+	height 100px
+	alinear(row,center,center)
+	h1
+		color black
+		position relative
+		animation-duration 2s
+		&:first-child
+			animation-name h1
+		&:last-child
+			animation-name h2
+	img
+		height 100px
+		animation-name img
+		animation-duration 2s
+section
+	alinear(column,center,center)
+	h3
+		color black
+	button
+		border-radius 10px
+		background-color #337ab7
+		border-color #2e6da4
+		font-size 1.5em
+		height 50px
+		width 100%
+		margin-top 20px
+		color white
+		&:hover
+			background-color: #286090;
+			border-color: #204d74;
+div
+	alinear(column,flex-end,flex-end)
+	width 100%
+	height 150px;
+	a
+		text-decoration none
+		color #f5f5dc
+		#conf
+			margin-right 10px
+			font-size 30px;
+	a:hover
+		text-decoration none
+
+@keyframes h1 {
+    0%   { left:-500px;}
+    100%  { left:0px;}
+}
+@keyframes h2 {
+    0%   { left:500px;}
+    100%  { left:0px;}
+}
+
+@keyframes img {
+    0%   { height:0px;}
+    100%  { height:100px;}
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Configuración</title>
+	<link rel="stylesheet" href="../css/configuracion.css">
+	<script src="../js/configuracion.js"></script>
+</head>
+<body onload="cargar()">
+   <header><h1>Configuración</h1></header>
+		<ul>
+			<li>
+				<label>Ip BroadCast</label>
+				<input id="IpBrd" type="text" required value="10.0.255.255" />
+			</li>
+			<li>
+				<label>Ip MultiCast</label>
+				<input id="IpMul" type="text" required value="224.1.1.1"/>
+			</li>
+			<li>
+				<label>Puerto UDP</label>
+				<input id="PUDP" type="text" required value="20050"/>
+			</li>
+			<li>
+				<label>Puerto TCP</label>
+				<input id="PTCP" type="text" required value="20060"/>
+			</li>
+			<li>
+				<label>Puerto MultiCast</label>
+				<input id="PMUL" type="text" required value="20070"/>
+			</li>
+		</ul>
+		<button  class="button"  onclick="cambiar()">Aceptar</button>
+</body>
+</html>
