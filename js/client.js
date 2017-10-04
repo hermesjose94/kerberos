@@ -60,6 +60,10 @@ var mensaje = function(codigo){
 				case 7:
             json = {codigo:7}
             break;
+				case 11:
+            json = {codigo:11,
+                    mensaje:""}
+            break;
     }
     return json;
 }
@@ -90,7 +94,6 @@ var nombre;
 var manual=false;
 var miembro={nombre:"",id:null};
 var clientes = "";
-
 /*----------------------------------------------------------------------------------------------------------------
                                             funciones de conexion
 ----------------------------------------------------------------------------------------------------------------*/
@@ -205,25 +208,12 @@ function Multicast(ip_multi,port_multi){
     console.log("llego por Multicast.......");
     console.log(recibido);
     switch (recibido.codigo) {
-        case 4:
-                for (var i = 0; i < recibido.miembros.length; i++) {
-									nombres.push(recibido.miembros[i].nombre);
-									ids.push(recibido.miembros[i].id);
-                }
-                empezar();
-        break;
 				case 10:
 					empezar();
+					var json11 = mensaje(11);
+			    json11.mensaje=nombre;
+			    enviarmulti(json11);
 				break;
-        case 5:
-							pintar(recibido.x,recibido.y,recibido.tam,recibido.color);
-        break;
-				case 6:
-              borrando(recibido.x,recibido.y,recibido.tam);
-        break;
-        case 7:
-							vaciar();
-        break;
     }
   });
   clientMUL.bind(port_multi);
@@ -235,7 +225,7 @@ funcion encargada de escuchar por Multicast recibe la ip de multicast y el puert
 function enviarmulti(json) {
 
       var message = new Buffer(JSON.stringify(json));
-      clientMUL.send(message, 0, message.length, port_multi,ip_multi);
+      clientMUL.send(message, 0, message.length, port_multi,ip_broadcast);
       console.log("Enviando Multicast...");
       console.log(json);
 }

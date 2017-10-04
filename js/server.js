@@ -226,13 +226,7 @@ function Multicast(ip_multi,port_multi){
     console.log("llego por Multicast.......");
     console.log(recibido);
     switch (recibido.codigo) {
-        case 5:
-							pintar(recibido.x,recibido.y,recibido.tam,recibido.color);
-        break;
-        case 6:
-              borrando(recibido.x,recibido.y,recibido.tam);
-        break;
-        case 7:
+        case 11:
 							vaciar();
         break;
     }
@@ -285,7 +279,6 @@ jugadores y llama a empezar()
 ----------------------------------------------------------------------------------------------------------------*/
 function enviar_empezar(){
     var json4 = mensaje(10);
-    var j2={nombre:"",id:null};
     json4.mensaje="hola";
     enviarmulti(json4);
     empezar();
@@ -310,4 +303,9 @@ funcion encargada de devolver todo al index o menu principal donde se escoje si 
 function volver()
 {
     window.location = ("../index.html");
+}
+
+function agregar(mensaje) {
+  var div = document.getElementById("consola");
+  div.innerHTML='<p>'+mensaje+'</p><br>';  
 }
