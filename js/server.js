@@ -117,9 +117,9 @@ function iniciar() {
             port_multi= res[4];
             console.log("Datos de conexion: "+"IB: "+ip_broadcast+" IM: "+ip_multi+" PU: "+port_udp+" PT: "+port_tcp+" PM: "+port_multi);
             json.nombre=nombre;
-          //  UDP(json,ip_broadcast,port_udp);
-          //  TCP(mensaje(3),ip,port_tcp);
-          //  Multicast(ip_multi,port_multi);
+            UDP(json,ip_broadcast,port_udp);
+            TCP(mensaje(3),ip,port_tcp);
+            //Multicast(ip_multi,port_multi);
       }
     });
 }
@@ -140,12 +140,12 @@ function UDP(json,ip_broadcast,port){
             json.tiempo=""+json.tiempo;
             json.espacios=""+(1-clients.length);
             message = new Buffer(JSON.stringify(json));
-            console.log(json.nombre+" "+json.tiempo);
+            console.log(json.nombre+" "+json.tiempo+" "+json.espacios);
             serverUDP.send(message, 0, message.length, port, ip_broadcast, function(err, bytes) {
             if(err){console.log(err);}});
         json.tiempo=json.tiempo-1;
-        if(json.espacios<=0){
-            enviar_empezar();
+        if(json.espacios==0){
+          enviar_empezar();
         }
         if(json.tiempo==0){
             json.tiempo=120;
