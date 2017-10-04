@@ -247,19 +247,19 @@ function Multicast(ip_multi,port_multi){
               console.log("Mensaje= "+ver+"\nClave= "+clave);
               Cifrado = cifrar(cascii);
               console.log("Mensaje Cifrado= "+Cifrado);
-              agregar("Mensaje cifrado\n"+Cifrado);
+              agregar("Mensaje cifrado= "+Cifrado);
               var json12 = mensaje(12);
               json12.mensaje=Cifrado;
               enviarmulti(json12);
         break;
-        case 11:
-							agregar("Respuesta del clientes\n "recibido.mensaje);
+        case 13:
+							agregar("Respuesta del clientes=  "+recibido.mensaje);
               var json14 = mensaje(14);
               if (ver ==  recibido.mensaje) {
-                json14.mensaje="Aceptado";  
+                json14.mensaje="Aceptada";
               }
               else {
-                json14.mensaje="Rechazado";
+                json14.mensaje="Rechazada";
               }
 
               enviarmulti(json14);
