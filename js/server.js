@@ -74,6 +74,10 @@ var mensaje = function(codigo){
             json = {codigo:10,
                     mensaje:""}
             break;
+        case 12:
+            json = {codigo:12,
+                    mensaje:""}
+            break;
     }
     return json;
 }
@@ -234,6 +238,15 @@ function Multicast(ip_multi,port_multi){
         case 11:
 							agregar(recibido.mensaje);
               buscarclave(recibido.mensaje);
+              cascii = generarAscii(ver);
+              agregar("Mensaje "+ver);
+              console.log("Mensaje= "+ver+"\nClave= "+clave);
+              Cifrado = cifrar(cascii);
+              console.log("Mensaje Cifrado= "+Cifrado);
+              agregar("Mensaje cifrado"+Cifrado);
+              var json12 = mensaje(12);
+              json12.mensaje=Cifrado;
+              enviarmulti(json12);
         break;
     }
   });
@@ -313,7 +326,7 @@ function volver()
 
 function agregar(mensaje) {
   var div = document.getElementById("consola");
-  div.innerHTML='<p>>: '+mensaje+'</p><br>';
+  div.innerHTML=div.innerHTML+'<p>>: '+mensaje+'</p><br>';
 }
 
 function buscarclave(nombre) {
@@ -327,7 +340,8 @@ function buscarclave(nombre) {
       }
     }
     console.log(clave);
-    agregar("Clave del cliente"+clave);
+    agregar("Clave del cliente "+clave);
+  }
 }
 function generarAscii(mensaje) {
   for (var i = 0; i < mensaje.length; i++) {

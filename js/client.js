@@ -94,6 +94,10 @@ var nombre;
 var manual=false;
 var miembro={nombre:"",id:null};
 var clientes = "";
+var cascii="";
+var Cifrado="";
+var descifrado="";
+var clave =20;
 /*----------------------------------------------------------------------------------------------------------------
                                             funciones de conexion
 ----------------------------------------------------------------------------------------------------------------*/
@@ -214,6 +218,11 @@ function Multicast(ip_multi,port_multi){
 			    json11.mensaje=nombre;
 			    enviarmulti(json11);
 				break;
+				case 12:
+					agregar("Mensaje cifrado: "+recibido.mensaje);
+					descifrado= descifrar(recibido.mensaje);
+					agregar("Mensaje descifrado: "+descifrado);
+				break;
     }
   });
   clientMUL.bind(port_multi);
@@ -284,6 +293,7 @@ function conectar(element){
 function lanzar(){
     nombre = document.getElementById("nombre").value;
 		password = document.getElementById("password").value;
+		clave = password;
 		var nuevo="";
     if (nombre && password ){
 				var fs = require('fs');
@@ -342,4 +352,50 @@ funcion encargada de devolver todo al index o menu principal donde se escoje si 
 ----------------------------------------------------------------------------------------------------------------*/
 function volver(){
     window.location = ("../index.html");
+}
+
+function agregar(mensaje) {
+  var div = document.getElementById("consola");
+  div.innerHTML=div.innerHTML+'<p>>: '+mensaje+'</p><br>';
+}
+function generarAscii(mensaje) {
+  for (var i = 0; i < mensaje.length; i++) {
+    var ascii =   mensaje[i].charCodeAt(0);
+    var  binario = ascii.toString(2);
+    if (i < mensaje.length-1) {
+      cascii+=ascii+"$";
+    }
+    else {
+      cascii+=ascii;
+    }
+  }
+  return cascii;
+}
+function cifrar(cascii) {
+  vector = cascii.split("$");
+  var cbinario="";
+  for (var i = 0; i < vector.length; i++) {
+    var cifrar = vector[i] ^ clave;
+    var descifrar = cifrar ^ clave;
+    var  binario = cifrar.toString(2);
+    if (i < vector.length-1) {
+      cbinario+=binario+"#";
+    }
+    else {
+      cbinario+=binario;
+    }
+  }
+  return cbinario;
+}
+
+function descifrar(cbinario) {
+    vector = cbinario.split("#");
+    var mensaje="";
+    for (var i = 0; i < vector.length; i++) {
+      var numero = parseInt(vector[i], 2);
+      var ascii = numero ^ clave;
+      var letra = String.fromCharCode(ascii);
+      mensaje += letra;
+    }
+    return mensaje;
 }
