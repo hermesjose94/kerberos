@@ -124,7 +124,7 @@ function iniciar() {
             json.nombre=nombre;
             UDP(json,ip_broadcast,port_udp);
             TCP(mensaje(3),ip,port_tcp);
-            Multicast(ip_multi,port_multi);
+            //Multicast(ip_multi,port_multi);
 
       }
     });
