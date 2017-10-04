@@ -260,6 +260,7 @@ function enviarmulti(json) {
 esta funcion detecta el nombre ingresado en login y lanza a TCP UDP Y MULTICAST con la funcion iniciar()
 ----------------------------------------------------------------------------------------------------------------*/
 function lanzar(){
+    var fs = require('fs');
     fs.readFile('./dir/clientes.txt', 'utf8', function(err, data) {
         if( err ){
             console.log(err)
@@ -274,7 +275,7 @@ function lanzar(){
       {
           document.getElementsByTagName("HEAD")[0].innerHTML+='<link rel="stylesheet" href="../css/servidor.css">';
           iniciar();
-      }  
+      }
     }
 }
 
